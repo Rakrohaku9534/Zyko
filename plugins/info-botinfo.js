@@ -56,7 +56,7 @@ let vap = `*––––––『 BOT INFO 』––––––*
 🤖 ɴᴀᴍᴇ: ${_package.name}
 🧩 ᴠᴇʀsɪᴏɴ: ${_package.version}
 📚 ʟɪʙʀᴀʀʏ: ${_package.description}
-👩‍💻 ᴅᴇᴠᴇʟᴏᴘᴇʀ: Zyko MD
+👩‍💻 ᴅᴇᴠᴇʟᴏᴘᴇʀ: FAHRUL MD
 
 ⏳ ᴜᴩᴛɪᴍᴇ: ${uptime}
 📈 ᴅᴀᴛᴀʙᴀsᴇ: ${totalreg}
