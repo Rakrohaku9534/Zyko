@@ -7,16 +7,16 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname, text, command }) => {
 ▫ OVO: ${global.povo}
 ▪ Gopay: ${global.pgopay}
 
-▲ Donasi juga kepadah pembuat script bot ini 085212649276
+▲ Donasi juga kepadah pembuat script bot ini 085786539008
 
 Semoga Anda diberikan kemudahan rezeki dan dilipatgandakan rezeki Anda.`
 conn.sendMessage(m.chat, {
 text: cap,
 contextInfo: {
 externalAdReply: {
-title: '© ZYKOBOTZ MD V.1.1 (Public Botz)',
+title: '© F.ABOTZ MD V.1.1 (Public Botz)',
 body: 'D O N A T E',
-thumbnailUrl: "https://telegra.ph/file/924d91bbeed43ee7c5888.jpg",
+thumbnailUrl: "https://telegra.ph/file/f26155dcc30920db0a3d0.jpg",
 mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m}) 
