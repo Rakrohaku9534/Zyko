@@ -37,7 +37,7 @@ mimetype: 'audio/mp4', fileName: `${title}`, contextInfo: { externalAdReply: { s
 mediaType:  2,
 mediaUrl: url,
 title: title,
-body: "© ZYKOBOTZ MD V.1.1 (Public Botz)",
+body: "© F.ABOTZ MD V.1.1 (Public Botz)",
 sourceUrl: url,
 thumbnail: await(await conn.getFile(thumbnail)).data                                                                     
                                                                                                                  }
