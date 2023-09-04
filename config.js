@@ -60,7 +60,7 @@ global.psaweria = 'https://saweria.co/Fahrul_mt'
 
 /*============== NOMOR ==============*/
 global.nomorbot = '6285712408309'
-global.nomorown = '6285786539008','18155545188'
+global.nomorown = '18155545188'
 global.namebot = 'F.A BOTZ MD'
 global.nameown = 'FAHRUL MD'
 global.email = 'rakrohaku@gmail.com' 
@@ -80,11 +80,10 @@ global.lolkey = pickRandom(["e54205a4ca2caa368cc067bb", "8e66d0934cf741bfd2182c1
 
 /*============== STAFF ==============*/
 global.owner = [
-  ['6285786539008', 'FAHRUL MD', true]
-  ['18155545188', 'FAHRUL 2', true]
+  ['18155545188', 'FAHRUL MD', true]
 ]
-global.mods = ['18155545188'] 
-global.prems = ['18155545188'] 
+global.mods = [] 
+global.prems = [] 
 
 /*============== API ==============*/
 global.APIs = { 
