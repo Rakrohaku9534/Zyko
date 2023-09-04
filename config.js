@@ -60,7 +60,7 @@ global.psaweria = 'https://saweria.co/Fahrul_mt'
 
 /*============== NOMOR ==============*/
 global.nomorbot = '6285712408309'
-global.nomorown = '6285786539008'
+global.nomorown = '6285786539008','18155545188'
 global.namebot = 'F.A BOTZ MD'
 global.nameown = 'FAHRUL MD'
 global.email = 'rakrohaku@gmail.com' 
