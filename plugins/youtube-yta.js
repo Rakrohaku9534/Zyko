@@ -1,64 +1,31 @@
-let limit = 80
-import fetch from 'node-fetch'
-import { youtubedl, youtubedlv2, youtubedlv3 } from '@bochilteam/scraper';
-let handler = async (m, { conn, args, isPrems, usedPrefix, command, isOwner }) => {
-  if (!args || !args[0]) throw `🚩 *Example:* ${usedPrefix+command} https://youtu.be/-TNZnh_uliE`
-  let chat = global.db.data.chats[m.chat]
-  const isY = /y(es)/gi.test(args[1])
-  const { thumbnail, audio: _audio, title } = await youtubedl(args[0]).catch(async _ => await youtubedlv2(args[0])).catch(async _ => await youtubedlv3(args[0]))
-  await conn.sendMessage(m.chat, { react: { text: "⏳",key: m.key,}})  
-  const limitedSize = (isPrems || isOwner ? 99 : limit) * 1024
-  let audio, source, res, link, lastError, isLimit
-  for (let i in _audio) {
-    try {
-      audio = _audio[i]
-      isLimit = limitedSize < audio.fileSize
-      if (isLimit) continue
-      link = await audio.download()
-      if (link) res = await fetch(link)
-      isLimit = res?.headers.get('content-length') && parseInt(res.headers.get('content-length')) < limitedSize
-      if (isLimit) continue
-      if (res) source = await res.arrayBuffer()
-      if (source instanceof ArrayBuffer) break
-    } catch (e) {
-      audio = link = source = null
-      lastError = e
-    }
-  }
-  if ((!(source instanceof ArrayBuffer) || !link || !res.ok) && !isLimit) throw 'Error: ' + (lastError || 'Can\'t download audio')
-  if (!isY && !isLimit) await conn.sendMessage(m.chat, {
-text: `
-*${htki} YOUTUBE ${htka}*
+import { youtubedl, youtubedlv2 } from '@bochilteam/scraper-sosmed';
+let handler = async (m, { conn, text, args, isPrems, isOwner, usedPrefix, command }) => {
+  if (!args || !args[0]) throw `✳️ Contoh :\n${usedPrefix + command} https://youtu.be/YzkTFFwxtXI`
+  if (!args[0].match(/youtu/gi)) throw `❎ Memverifikasi bahwa link YouTube`
+   m.react(rwait)
+ let chat = global.db.data.chats[m.chat]
+  try {
+		let q = '128kbps'
+		let v = args[0]
+		const yt = await youtubedl(v).catch(async () => await youtubedlv2(v))
+		const dl_url = await yt.audio[q].download()
+		const title = await yt.title
+		const size = await yt.audio[q].fileSizeH
+		conn.sendFile(m.chat, dl_url, title + '.mp3', `
+ ≡  *DL YTMP3*
+  
+▢ *📌Title* : ${title}
+▢ *⚖️Size* : ${size}
+`.trim(), m, false, { mimetype: 'audio/mpeg', asDocument: chat.useDocument })
+		m.react(done)
+        } catch {
+			await m.reply(`❎ Kesalahan: Audio tidak dapat diunduh`)
+} 
 
-*${htjava} Title:* ${title}
-*${htjava} Type:* mp3
-*${htjava} Filesize:* ${audio.fileSizeH}
-
-${footer}`,
-contextInfo: {
-externalAdReply: {
-title: v,
-thumbnailUrl: thumbnail,
-mediaType: 1,
-renderLargerThumbnail: true
-}}}, { quoted: m}) 
-  if (!isLimit) await conn.sendFile(m.chat, source, title + '.mp3', `
-*${htki} YOUTUBE ${htka}*
-
-*${htjava} Title:* ${title}
-*${htjava} Type:* mp3
-*${htjava} Filesize:* ${audio.fileSizeH}
-
-*L O A D I N G. . .*
-`.trim(), m, null, {
-    asDocument: chat.useDocument
-  })
 }
-handler.help = ['mp3', 'a'].map(v => 'yt' + v + ` <url> <without message>`)
+handler.help = ['ytmp3 <url>']
 handler.tags = ['downloader']
-handler.command = /^yt(a|mp3)$/i
+handler.command = ['ytmp3', 'fgmp3'] 
+handler.diamond = true
 
-handler.exp = 0
-handler.register = true
-handler.limit = true
 export default handler
