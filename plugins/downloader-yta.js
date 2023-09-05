@@ -1,34 +1,31 @@
-import { 
-    youtubedl,
-    youtubedlv2 
-} from '@bochilteam/scraper'
+import { youtubedl, youtubedlv2 } from '@bochilteam/scraper-sosmed';
+let handler = async (m, { conn, text, args, isPrems, isOwner, usedPrefix, command }) => {
+  if (!args || !args[0]) throw `✳️ Contoh :\n${usedPrefix + command} https://youtu.be/YzkTFFwxtXI`
+  if (!args[0].match(/youtu/gi)) throw `❎ Memverifikasi bahwa link YouTube`
+   m.react(rwait)
+ let chat = global.db.data.chats[m.chat]
+  try {
+		let q = '128kbps'
+		let v = args[0]
+		const yt = await youtubedl(v).catch(async () => await youtubedlv2(v))
+		const dl_url = await yt.audio[q].download()
+		const title = await yt.title
+		const size = await yt.audio[q].fileSizeH
+		conn.sendFile(m.chat, dl_url, title + '.mp3', `
+ ≡  *DL YTMP3*
+  
+▢ *📌Title* : ${title}
+▢ *⚖️Size* : ${size}
+`.trim(), m, false, { mimetype: 'audio/mpeg', asDocument: chat.useDocument })
+		m.react(done)
+        } catch {
+			await m.reply(`❎ Kesalahan: Audio tidak dapat diunduh`)
+} 
 
-var handler = async (m, { conn, args, text }) => {
-  if (!args[0]) throw 'Urlnya Mana Banh? >:('
-  let q = '128kbps'
-  let v = args[0]
- if (!(text.includes('http://youtu') || text.includes('https://youtu'))) return m.reply('Link Anda Invalid')
-  // Ambil info dari video
-  const yt = await youtubedl(v).catch(async () => await  youtubedlv2(v))
-  const dl_url = await yt.audio[q].download()
-  const ttl = await yt.title
-  const size = await yt.audio[q].fileSizeH
-
-  // Tampilkan informasi file beserta thumbnail
-  const info = `
-• Judul: ${ttl}
-• Ukuran: ${size}
-• Link YouTube: ${v}`
-  await conn.sendMessage(m.chat, { 
-    document: { url: dl_url }, 
-    mimetype: 'audio/mpeg', 
-    fileName: `${ttl}.mp3`,
-    caption: info
-  }, {quoted: m})
 }
-
-// Jika ingin menambahkan tag, ubah code berikut:
+handler.help = ['ytmp3 <url>']
 handler.tags = ['downloader']
-handler.help = ['ytmp3']
-handler.command = /^ytmp3|youtubemp3$/i
+handler.command = ['ytmp3', 'fgmp3'] 
+handler.diamond = true
+
 export default handler
