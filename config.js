@@ -80,7 +80,7 @@ global.lolkey = pickRandom(["e54205a4ca2caa368cc067bb", "8e66d0934cf741bfd2182c1
 
 /*============== STAFF ==============*/
 global.owner = [
-  ['18155545188', 'FAHRUL MD', true]
+  ['15735703567', 'FAHRUL MD', true]
 ]
 global.mods = [] 
 global.prems = [] 
